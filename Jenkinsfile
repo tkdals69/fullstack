@@ -42,6 +42,7 @@ pipeline{
                     }
             }
         }
+        
         stage('Docker Image Push') {
             steps {
                 withDockerRegistry([ credentialsId: dockerHubRegistryCredential, url: "" ]) {
