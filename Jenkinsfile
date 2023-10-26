@@ -4,7 +4,7 @@ pipeline{
     environment {
         dockerHubRegistry = 'moonsungkim'
         dockerHubRegistryCredential = 'docker-hub'
-        githubCredential = 'k8s_manifest_git'
+        githubCredential = 'github_cred'
     }
 
     stages {
