@@ -97,7 +97,7 @@ pipeline{
 
                     sh "sed -i 's/react:.*\$/react:${currentBuild.number}/g' web-deployment.yaml"
                     sh "sed -i 's/nodejs:.*\$/nodejs:${currentBuild.number}/g' api-deployment.yaml"
-                    sh "sed -i 's/db:.*\$/mysql:${currentBuild.number}/g' mysql-deployment.yaml"
+                    sh "sed -i 's/db:.*\$/db:${currentBuild.number}/g' mysql-deployment.yaml"
 
                     sh "git add ."
                     sh "git commit -m '[UPDATE] k8s ${currentBuild.number} image versioning'"
