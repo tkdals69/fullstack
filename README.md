@@ -8,6 +8,8 @@
 
 [해결과정 및 트러블슈팅](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%86%8C%EA%B0%9C)
 
+[Kubernetes Manifest GitHub Repository](https://github.com/moonstar0331/fullstack-app-k8s-manifest)
+
 ## 📝 Summary
 
 1. 풀스택 어플리케이션 GKE 환경에서 배포
@@ -54,6 +56,7 @@ CI/CD 파이프라인 실행 과정은 다음과 같이 진행됩니다.
 2. Jenkinsfile을 작성하여 푸시된 코드를 통하여 **Docker Image를 빌드**하고 빌드된 이미지를 도커 허브에 Push 합니다.
    
     - (+) Jenkins 서버는 빌드된 이미지의 태그 값으로 쿠버네티스 메니페스트가 저장되어 있는 **GitHub 리포지토리를 수정**해줍니다.
+    - [Kubernetes Manifest GitHub Repository](https://github.com/moonstar0331/fullstack-app-k8s-manifest)
 
 3. **ArgoCD**가 GitHub의 변경된 메니페스트를 감지하고 **메니페스트와 Cluster의 Sync**를 맞춥니다.
 
