@@ -1,4 +1,4 @@
-# fullstack-app
+# k8s-team-self-project
 
 ![architecture](https://github.com/moonstar0331/fullstack-app/assets/79830859/6743b464-d4f9-4eb4-8206-9ddf7cbfb365)
 
