@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     environment {
-        dockerHubRegistry = 'moonsungkim'
+        dockerHubRegistry = 'klksm2'
         dockerHubRegistryCredential = 'docker-hub'
         githubCredential = 'github_cred'
     }
@@ -91,10 +91,10 @@ pipeline{
                 {
                     git branch: "main",
                     credentialsId: githubCredential,
-                    url: 'https://github.com/moonstar0331/fullstack-app-k8s-manifest.git'
+                    url: 'https://github.com/tkdals69/menifest.git'
 
-                    sh "git config --global user.email 'moonsung0331@gmail.com'"
-                    sh "git config --global user.name 'moonstar0331'"
+                    sh "git config --global user.email 'klksm99@nate.com'"
+                    sh "git config --global user.name 'tkdlas69'"
 
                     sh "sed -i 's/react:.*\$/react:${currentBuild.number}/g' web-deployment.yaml"
                     sh "sed -i 's/nodejs:.*\$/nodejs:${currentBuild.number}/g' api-deployment.yaml"
@@ -104,8 +104,8 @@ pipeline{
                     sh "git commit -m '[UPDATE] k8s ${currentBuild.number} image versioning'"
                     withCredentials([gitUsernamePassword(credentialsId: githubCredential,
                                      gitToolName: 'git-tool')]) {
-                        sh "git remote set-url origin https://github.com/moonstar0331/fullstack-app-k8s-manifest"
-                        sh "git push -u origin main"
+                        sh "git remote set-url origin https://github.com/tkdals69/menifest"
+                        sh "git push -u origin main --force"
                     }
                 }
             }
