@@ -1,15 +1,5 @@
-# k8s-team-self-project
 
-![architecture](https://github.com/moonstar0331/fullstack-app/assets/79830859/6743b464-d4f9-4eb4-8206-9ddf7cbfb365)
-
-
-위의 아키텍처와 같이 React, NodeJS, MySQL로 이루어진 풀스택 어플리케이션에 대한 CI/CD 파이프라인과 Prometheus, Grafana를 통한 모니터링 시스템, 로깅 시스템을 구축해보는 프로젝트입니다.
-프로젝트에 대한 진행과정과 트러블 슈팅은 **기술 블로그**를 통해서 확인하실 수 있습니다.
-
-[해결과정 및 트러블슈팅](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%86%8C%EA%B0%9C)
-
-[Kubernetes Manifest GitHub Repository](https://github.com/moonstar0331/fullstack-app-k8s-manifest)
-
+위의 아키텍처와 같이 React, NodeJS, MySQL로 이루어진 풀스택 어플리케이션에 대한 CI/CD 파이프라인과 Prometheus, Grafana를 통한 모니터링 시스템, 로깅 시스템을 구축해보는 프로젝트입니다
 ## 📝 Summary
 
 1. 풀스택 어플리케이션 GKE 환경에서 배포
@@ -35,17 +25,11 @@
 
 ## ⭐️ 단계별 목표
 
-**First! GKE 환경에서 풀스택 어플리케이션 배포**
+** 자동화 된 어플리케이션 배포 
 
-이번 프로젝트는 GCP에서 VM 인스턴스 3개를 만들어서 직접 쿠버네티스 환경을 구축하는 것이 아닌
-
-간편하게 **GKE 클러스터**를 만들어서 프로젝트 환경을 구축합니다.
-
-[[K8S] CI/CD Pipeline, 모니터링, 로깅 시스템 구축 프로젝트 -GKE 환경에 배포하기](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-GKE-%ED%99%98%EA%B2%BD%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)
+EKS 클러스터를 사용하여 프로젝트 환경을 구축하여 쿠버네티스를 사용해 자동화 하는 환경을 구축
 
 ---
-
-**Second! CI/CD 파이프라인 구축**
 
 CI/CD 파이프라인은 어플리케이션 소스 코드 GitHub 리포지토리, Kubernetes GitHub 리포지토리, Jenkins, Docker Hub를 사용하여 구축합니다.
 
@@ -56,15 +40,9 @@ CI/CD 파이프라인 실행 과정은 다음과 같이 진행됩니다.
 2. Jenkinsfile을 작성하여 푸시된 코드를 통하여 **Docker Image를 빌드**하고 빌드된 이미지를 도커 허브에 Push 합니다.
    
     - (+) Jenkins 서버는 빌드된 이미지의 태그 값으로 쿠버네티스 메니페스트가 저장되어 있는 **GitHub 리포지토리를 수정**해줍니다.
-    - [Kubernetes Manifest GitHub Repository](https://github.com/moonstar0331/fullstack-app-k8s-manifest)
 
 3. **ArgoCD**가 GitHub의 변경된 메니페스트를 감지하고 **메니페스트와 Cluster의 Sync**를 맞춥니다.
 
-[[K8S] CI/CD Pipeline, 모니터링, 로깅 시스템 구축 프로젝트 - CI/CD 파이프라인 구축:1](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-CICD-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EA%B5%AC%EC%B6%951)
-
-[[K8S] CI/CD Pipeline, 모니터링, 로깅 시스템 구축 프로젝트 - CI/CD 파이프라인 구축:2](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-CICD-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EA%B5%AC%EC%B6%952)
-
-[[K8S] CI/CD Pipeline, 모니터링, 로깅 시스템 구축 프로젝트 - CI/CD 파이프라인 구축:3](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-CICD-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EA%B5%AC%EC%B6%953)
 
 ---
 
@@ -94,20 +72,4 @@ CI/CD 파이프라인 실행 과정은 다음과 같이 진행됩니다.
 
 그래프 또는 표 등을 사용하여 Traffic의 추이를 표시합니다.
 ```
-📌 해당 대시보드의 패널을 개발합니다.
 
-- 클러스터 전체에 떠있는 Pod 개수 추적
-- 클러스터 전체에서 각 Pod의 Memory, Cpu 상태
-- Unhealty 상태에 있는 Pod 개수 추적
-- 기타 추가적으로 개발 하고 싶은 것이 있으면 개발하면 됩니다.
-```
-
-[[K8S] CI/CD Pipeline, 모니터링, 로깅 시스템 구축 프로젝트 - 모니터링 시스템 구축](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95)
-
----
-
-**Last! 로깅 시스템 구축**
-
-Grafana Loki를 사용하여 Logging 시스템을 구축하고 알림을 받기 위해 임계값 설정
-
-[[K8S] CI/CD Pipeline, 모니터링, 로깅 시스템 구축 프로젝트 - 로깅 시스템 구축](https://velog.io/@mdev97/K8S-CICD-Pipeline-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A1%9C%EA%B9%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%B6%95)
